@@ -11,7 +11,7 @@ const Navbar = () => {
     }
 
     const navLink = <>
-        <li><NavLink to="/">Home</NavLink></li>
+        <li className="z-30"><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/addtask">Add Task</NavLink></li>
        
     </>

@@ -3,6 +3,7 @@ import Root from "./Root";
 import Home from "../HomePage/Home";
 import SingIn from "../../Authentication/SingIn";
 import SingUp from "../../Authentication/SingUp";
+import CreateTask from "../Other Components/CreateTask.jsx/CreateTask";
 
 const Route = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const Route = createBrowserRouter([
             {
                 path:'/SingUp',
                 element:<SingUp></SingUp>
+            },
+            {
+                path:'/addtask',
+                element:<CreateTask></CreateTask>
             }
         ]
     }
