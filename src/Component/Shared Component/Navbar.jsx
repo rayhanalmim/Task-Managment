@@ -12,18 +12,8 @@ const Navbar = () => {
 
     const navLink = <>
         <li><NavLink to="/">Home</NavLink></li>
-        {
-            user && <li><NavLink to="/Addjobs">Add jobs</NavLink></li>
-        }
-        {
-            user && <li><NavLink to="/Myjobs">My Posted Jobs</NavLink></li>
-        }
-        {
-            user && <li><NavLink to="/Mybids">My Bids</NavLink></li>
-        }
-        {
-            user && <li><NavLink to="/Bidsrequest">Bids Requests</NavLink></li>
-        } 
+        <li><NavLink to="/addtask">Add Task</NavLink></li>
+       
     </>
 
     const handleLogOut = () => {
@@ -56,9 +46,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="flex gap-3">
-                    <img className="w-24 pt-3 xl:w-40" src="https://i.ibb.co/swpWvDd/Artboard-1-copy-2-1920w.png" alt="" />
                     <div className="flex justify-center items-center">
-                    <h3 className="font-bold text-2xl xl:text-3xl hidden md:block lg:hidden xl:block">JobMastersHub</h3>
+                    <h3 className="font-bold text-2xl xl:text-3xl hidden md:block lg:hidden xl:block">Task Management</h3>
                     </div>
                 </div>
             </div>
