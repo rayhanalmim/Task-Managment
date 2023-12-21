@@ -1,6 +1,10 @@
 import { DragDropContext } from "react-beautiful-dnd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TaskColimn from "./TaskColimn";
+import useTaskData from "../../Hook/useTaskData";
+import { AuthContext } from "../../Authentication/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const reorderColumnList = (sourceCol, startIndex, endIndex) => {
     const newTaskIds = Array.from(sourceCol.taskIds);
@@ -16,10 +20,24 @@ const reorderColumnList = (sourceCol, startIndex, endIndex) => {
   };
 
 const TaskDashboard = () => {
-    const [state, setState] = useState(initialData);
-    console.log(state)
+    const [state, setState] = useState([]);
+    const {user } = useContext(AuthContext);
 
+    const { data: taskdata=[], isPending, isLoading, refetch } = useQuery({
+        queryKey: ['Task For', user?.email],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/taskdata?email=${user?.email}`)
+            const itemData = res.data[0];
+            setState(itemData)
+            console.log(itemData)
+            return itemData;
+        }
+    })
 
+    if (isLoading) {
+        return <div className="flex justify-center"><span className="loading loading-spinner loading-md"></span></div>
+    }
+    console.log(taskdata, state);
 
     const onDragEnd = (result) => {
         const { destination, source } = result;
@@ -86,7 +104,7 @@ const TaskDashboard = () => {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
            {
-            state.tasks.length ?  <div className="grid grid-cols-3 pt-5 justify-items-center gap-3">
+            state?.tasks?.length ?  <div className="grid grid-cols-3 pt-5 justify-items-center gap-3">
             {
                 state.columnOrder.map((columId) => {
                     const column = state.columns[columId]

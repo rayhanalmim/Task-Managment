@@ -3,6 +3,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Authentication/AuthProvider";
+import axios from "axios";
 
 const CreateTask = () => {
     const { user } = useContext(AuthContext);
@@ -12,38 +13,21 @@ const CreateTask = () => {
 
     const onSubmit = async (data) => {
         const temp = {
-            ...data,
-            "like": 0,
-            "dislike": 0,
-            "surveyor": user.email,
-            "vote": {
-                "yes": 0,
-                "no": 0
-            },
-            "voted": [],
-            "likesBy": [],
-            "dislikesBy": [],
-            "timestamp": new Date(),
-            "status": "pending",
-            "feedback": [],
-            "comment": [],
-            "report": [],
-            "adminFeedback": "",
-            "feelBackBy": []
+            ...data
         }
         console.log(temp);
 
-        // axiosSecure.post('/createsurvey', temp)
-        //     .then(res => {
-        //         console.log(res.data)
-        //         Swal.fire({
-        //             title: "Congratulation!",
-        //             text: "Your survey has been created.",
-        //             icon: "success"
-        //         });
-        //         reset();
-        //         navigate('/dashboard/mypostedsurvey')
-        //     })
+        axios.post(`http://localhost:5000/createTask?user=${user.email}`, temp)
+            .then(res => {
+                console.log(res.data)
+                Swal.fire({
+                    title: "Congratulation!",
+                    text: "Your task has been created.",
+                    icon: "success"
+                });
+                reset();
+                // navigate('/mytask')
+            })
 
     }
 
@@ -61,7 +45,7 @@ const CreateTask = () => {
                             <label className="label">
                                 <span className="label-text font-semibold">Task Title*</span>
                             </label>
-                            <input required {...register("title")} type="text" placeholder="Title" className="input input-bordered w-full" />
+                            <input required {...register("content")} type="text" placeholder="Title" className="input input-bordered w-full" />
                         </div>
 
                         <div className="form-control w-full">
