@@ -85,7 +85,6 @@ const TaskDashboard = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <h3 className="font-semibold text-3xl text-center">Task management</h3>
             <div className="grid grid-cols-3 pt-5 justify-items-center gap-3">
                 {
                     state.columnOrder.map((columId) => {

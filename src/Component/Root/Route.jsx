@@ -4,6 +4,7 @@ import Home from "../HomePage/Home";
 import SingIn from "../../Authentication/SingIn";
 import SingUp from "../../Authentication/SingUp";
 import CreateTask from "../Other Components/CreateTask.jsx/CreateTask";
+import ManageTask from "../Other Components/CreateTask.jsx/ManageTask";
 
 const Route = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const Route = createBrowserRouter([
             {
                 path:'/addtask',
                 element:<CreateTask></CreateTask>
+            },
+            {
+                path:'mytask',
+                element:<ManageTask></ManageTask>
             }
         ]
     }

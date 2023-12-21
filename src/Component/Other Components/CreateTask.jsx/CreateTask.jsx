@@ -59,34 +59,33 @@ const CreateTask = () => {
                     <div className="flex gap-4">
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text font-semibold">Survey Title*</span>
+                                <span className="label-text font-semibold">Task Title*</span>
                             </label>
                             <input required {...register("title")} type="text" placeholder="Title" className="input input-bordered w-full" />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text font-semibold">Category*</span>
+                                <span className="label-text font-semibold">Priority*</span>
                             </label>
                             <select required defaultValue='default' {...register("category")} className="select select-bordered">
-                                <option disabled hidden value='default'>category</option>
-                                <option value='Food'>Food</option>
-                                <option value='Travel'>Travel</option>
-                                <option value='Education'>Education</option>
-                                <option value='Health'>Health</option>
+                                <option disabled hidden value='default'>priority level</option>
+                                <option value='Low'>Low</option>
+                                <option value='moderate'>moderate</option>
+                                <option value='high'>high</option>
                             </select>
                         </div>
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text font-semibold">Question*</span>
+                            <span className="label-text font-semibold">Deadline*</span>
                         </label>
-                        <input required {...register("questionOne")} type="text" placeholder="Your question" className="input input-bordered w-full" />
+                        <input required {...register("deadline")} type="date" placeholder="Your question" className="input input-bordered w-full" />
                     </div>
 
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold">Survey details*</span>
+                            <span className="label-text font-semibold">Task descriptions*</span>
                         </label>
                         <textarea required {...register("description")} className="textarea textarea-bordered h-24" placeholder="About Survey"></textarea>
                     </div>
