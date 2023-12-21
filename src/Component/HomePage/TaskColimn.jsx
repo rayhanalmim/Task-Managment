@@ -1,6 +1,7 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
 const TaskColimn = ({ column, tasks }) => {
+    console.log(tasks)
     return (
         <div className={`w-full border-gray-800 border-2`}>
 

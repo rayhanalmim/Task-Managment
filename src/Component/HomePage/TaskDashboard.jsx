@@ -85,16 +85,18 @@ const TaskDashboard = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className="grid grid-cols-3 pt-5 justify-items-center gap-3">
-                {
-                    state.columnOrder.map((columId) => {
-                        const column = state.columns[columId]
-                        const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
+           {
+            state.tasks.length ?  <div className="grid grid-cols-3 pt-5 justify-items-center gap-3">
+            {
+                state.columnOrder.map((columId) => {
+                    const column = state.columns[columId]
+                    const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
 
-                        return <TaskColimn key={column.id} column={column} tasks={tasks}></TaskColimn>
-                    })
-                }
-            </div>
+                    return <TaskColimn key={column.id} column={column} tasks={tasks}></TaskColimn>
+                })
+            }
+        </div> : <div><h3 className="text-center pt-5 font-bold underline text-3xl">No task found, <br />Please add some task</h3></div>
+           }
         </DragDropContext>
     );
 };
@@ -102,19 +104,19 @@ const TaskDashboard = () => {
 export default TaskDashboard;
 
 const initialData = {
-    tasks: {
-        1: { id: 1, content: "Configure Next.js application" },
-        2: { id: 2, content: "Configure Next.js and tailwind " },
-        3: { id: 3, content: "Create sidebar navigation menu" },
-        4: { id: 4, content: "Create page footer" },
-        5: { id: 5, content: "Create page navigation menu" },
-        6: { id: 6, content: "Create page layout" },
-    },
+    tasks: [
+        { id: 1, content: "Configure Next.js application" },
+        { id: 2, content: "Configure Next.js and tailwind " },
+        { id: 3, content: "Create sidebar navigation menu" },
+        { id: 4, content: "Create page footer" },
+        { id: 5, content: "Create page navigation menu" },
+        { id: 6, content: "Create page layout" },
+    ],
     columns: {
         "column-1": {
             id: "column-1",
             title: "TO-DO",
-            taskIds: [1, 2, 3, 4, 5, 6],
+            taskIds: [0, 1, 2, 3, 4, 5],
         },
         "column-2": {
             id: "column-2",
